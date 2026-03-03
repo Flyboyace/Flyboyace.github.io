@@ -1,11 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Hello world</h1>
+
+<!-- Loading Bar -->
+<div class="loader">
+    <div class="progress"></div>
+</div>
+
+<!-- Animated Cloud Background -->
+<div class="clouds"></div>
+
+<!-- Floating Glass Navbar -->
+<nav class="navbar">
+    
+</nav>
+
+<div class="container hidden">
+
+    <h1 class="title">Your Name</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab-indicator"></div>
+        <button class="tab-btn active" data-tab="about">About</button>
+        <button class="tab-btn" data-tab="projects">Projects</button>
+        <button class="tab-btn" data-tab="contact">Contact</button>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="tab-content active">
+        <h2>About Me</h2>
+        <p class="typing"></p>
+    </div>
+
+    <!-- Projects -->
+    <div id="projects" class="tab-content">
+        <h2>Projects</h2>
+
+        <div class="project-card reveal">
+            <img src="https://picsum.photos/600/350?1">
+            <h3>Startup Landing Page</h3>
+            <p>Modern responsive website with clean UI.</p>
+        </div>
+
+        <div class="project-card reveal">
+            <img src="https://picsum.photos/600/350?2">
+            <h3>Web Application</h3>
+            <p>Interactive app built with JavaScript.</p>
+        </div>
+
+        <div class="project-card reveal">
+            <img src="https://picsum.photos/600/350?2">
+            <h3>Web Application</h3>
+            <p>Interactive app built with JavaScript.</p>
+        </div>
+
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p>Email: your@email.com</p>
+        <p>GitHub: github.com/yourname</p>
+        <p>LinkedIn: linkedin.com/in/yourname</p>
+    </div>
+
+</div>
+
+<script>
+// Loading bar
+window.addEventListener("load", () => {
+    document.querySelector(".progress").style.width = "100%";
+    setTimeout(() => {
+        document.querySelector(".loader").style.opacity = "0";
+        document.querySelector(".container").classList.remove("hidden");
+    }, 800);
+});
+
+// Page transition blur
+const container = document.querySelector(".container");
+function blurIn() {
+    container.style.filter = "blur(10px)";
+    setTimeout(() => {
+        container.style.filter = "blur(0px)";
+    }, 200);
+}
+
+// Tabs
+const buttons = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".tab-content");
+const indicator = document.querySelector(".tab-indicator");
+
+function activateTab(tabId) {
+    blurIn();
+
+    contents.forEach(c => c.classList.remove("active"));
+    buttons.forEach(b => b.classList.remove("active"));
+
+    document.getElementById(tabId).classList.add("active");
+    const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+    activeBtn.classList.add("active");
+
+    indicator.style.width = activeBtn.offsetWidth + "px";
+    indicator.style.left = activeBtn.offsetLeft + "px";
+}
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+});
+
+// Typing animation
+const text = "I'm a modern web developer building clean, animated and high-performance web experiences.";
+let i = 0;
+function type() {
+    if (i < text.length) {
+        document.querySelector(".typing").textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 35);
+    }
+}
+type();
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+});
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+// Animated Counters
+const counters = document.querySelectorAll(".counter");
+counters.forEach(counter => {
+    const update = () => {
+        const target = +counter.getAttribute("data-target");
+        const count = +counter.innerText;
+        const increment = target / 100;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(update, 20);
+        } else {
+            counter.innerText = target;
+        }
+    };
+    update();
+});
+</script>
+
 </body>
 </html>
