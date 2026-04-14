@@ -1,18 +1,44 @@
-* {
+/* Global Reset + Force Same Font Everywhere */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif !important;
+}
+
+/* Ensure links and buttons never change font */
+a,
+a:visited,
+a:hover,
+a:active,
+button {
+    font-family: 'Orbitron', sans-serif !important;
 }
 
 body {
     background: linear-gradient(135deg, #0f1f0f, #1e2d1e);
-    color: #eaffea;
+    color: #2EFF00;
     overflow-x: hidden;
     position: relative;
+    opacity: 0;
+    transform: scale(0.985);
+    transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
 }
 
-/* 🌅 Soft Sunrise Glow */
+body.page-entered {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.page-exit {
+    opacity: 0;
+    transform: scale(1.01);
+    filter: blur(8px);
+}
+
+/* Soft Sunrise Glow */
 body::before {
     content: "";
     position: fixed;
@@ -25,7 +51,7 @@ body::before {
     z-index: -2;
 }
 
-/* 🌄 Subtle Parallax Depth */
+/* Subtle Parallax Depth */
 body::after {
     content: "";
     position: fixed;
@@ -42,6 +68,25 @@ body::after {
     to { background-position: 50px 50px; }
 }
 
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #00ff88, #00AAFA, #00FFDF);
+    box-shadow: 0 0 12px rgba(0,255,136,0.6);
+    transition: width 0.8s ease;
+}
+
 /* Floating Icons */
 .floating-icon {
     position: fixed;
@@ -49,6 +94,25 @@ body::after {
     opacity: 0.1;
     animation: float 12s ease-in-out infinite;
     color: #00ff88;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.icon1 {
+    top: 18%;
+    left: 8%;
+}
+
+.icon2 {
+    top: 60%;
+    left: 85%;
+    animation-delay: 2s;
+}
+
+.icon3 {
+    top: 32%;
+    left: 65%;
+    animation-delay: 4s;
 }
 
 @keyframes float {
@@ -59,15 +123,16 @@ body::after {
 
 /* Container */
 .container {
-    max-width: 1000px;
-    margin: 140px auto;
+    max-width: 1400px;
+    margin: 110px 0 80px 55px;
     padding: 40px;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0,255,100,0.2);
-    text-align: center;
     transition: 0.4s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .hidden {
@@ -75,31 +140,118 @@ body::after {
     transform: translateY(20px);
 }
 
+/* Main layout */
+.home-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.left-side {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+.right-side {
+    width: 320px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
 /* Text Styling */
-h1, h2 {
+.title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    margin-bottom: 14px;
+    text-align: left;
     color: #00ff88;
 }
 
+h2 {
+    color: #00ff88;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
 p {
-    color: #ffaa00;
+    color: #00CDFF;
+    text-align: left;
+    line-height: 1.7;
+}
+
+/* Profile panel */
+.profile-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.profile-image-placeholder {
+    width: 100%;
+    height: 380px;
+    border: px dashed rgba(0, 255, 136, 0.35);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 25px rgba(0,255,100,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #00FFDF;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.profile-image-placeholder img {
+    width: 110%;
+    height: 130%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.developer-type {
+    min-height: 90px;
+    width: 100%;
+    padding: 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 14px;
+    color: #00CDFF;
+    text-align: left;
+    line-height: 1.6;
+    outline: none;
+    box-shadow: 0 0 18px rgba(0,255,100,0.08);
+}
+
+.developer-type:focus {
+    border-color: rgba(0, 255, 136, 0.45);
+    box-shadow: 0 0 20px rgba(0,255,136,0.14);
 }
 
 /* Tabs */
 .tabs {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 30px 0;
     position: relative;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
 .tab-btn {
     background: none;
     border: none;
-    color: #eaffea;
+    color: #408062;
     padding: 12px 25px;
     cursor: pointer;
     font-size: 14px;
     transition: 0.3s;
+    position: relative;
+    z-index: 2;
 }
 
 .tab-btn:hover {
@@ -107,47 +259,156 @@ p {
 }
 
 .tab-btn.active {
-    color: #ffaa00;
+    color: #00FFDF;
 }
 
 .tab-indicator {
     position: absolute;
     bottom: 0;
+    left: 0;
     height: 3px;
-    background: linear-gradient(90deg, #00ff88, #ffaa00);
+    background: linear-gradient(90deg, #00ff88, #00FFDF);
     transition: 0.4s;
+    border-radius: 3px;
 }
 
 /* Content */
 .tab-content {
     display: none;
+    text-align: left;
 }
 
 .tab-content.active {
     display: block;
 }
 
-/* Projects */
+.typing {
+    min-height: 90px;
+    max-width: 720px;
+}
+
+/* Project Grid */
+.projects-grid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+/* Project Cards */
 .project-card {
+    position: relative;
     background: rgba(255,255,255,0.06);
-    padding: 20px;
-    margin: 30px auto;
+    padding: 15px;
     border-radius: 12px;
-    max-width: 650px;
-    transition: 0.3s;
+    width: 280px;
+    max-width: 280px;
+    margin: 0;
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    will-change: transform;
+    border: 1px solid rgba(0, 255, 136, 0.15);
 }
 
 .project-card:hover {
-    box-shadow: 0 0 25px rgba(255,170,0,0.5);
+    box-shadow:
+        0 0 25px rgba(94, 255, 0, 0.45),
+        0 0 45px rgba(0, 170, 250, 0.12);
+    border-color: rgba(0, 255, 136, 0.45);
 }
 
+/* Mouse glow */
+.card-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(0,255,136,0.25) 0%, rgba(0,255,136,0.08) 35%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 0;
+}
+
+/* Keep card content above glow */
+.project-card img,
+.project-card h3,
+.project-card p,
+.project-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+/* Images */
 .project-card img {
     width: 100%;
+    height: 160px;
+    object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    transition: transform 0.35s ease, filter 0.35s ease;
 }
 
-/* Reveal */
+.project-card:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.05);
+}
+
+/* Text */
+.project-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.project-card p {
+    font-size: 13px;
+    text-align: left;
+}
+
+/* Clickable link wrapper */
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    perspective: 1000px;
+}
+
+/* Hover overlay */
+.project-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: calc(100% - 30px);
+    height: 160px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ff88;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 0 10px rgba(0,255,136,0.8);
+    backdrop-filter: blur(2px);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+/* Reveal Animation */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -159,7 +420,7 @@ p {
     transform: translateY(0);
 }
 
-/* ✨ Pointer Glow */
+/* Pointer Glow */
 .cursor-glow {
     position: fixed;
     width: 25px;
@@ -169,4 +430,104 @@ p {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
+}
+
+/* Contact Links */
+#contact a {
+    color: #00AAFA;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+#contact a:hover {
+    color: #00AAFA;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+#contact a:visited {
+    color: #00AAFA;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .container {
+        margin: 100px 20px 60px 20px;
+    }
+
+    .home-layout {
+        flex-direction: column;
+    }
+
+    .right-side {
+        width: 100%;
+    }
+
+    .profile-panel {
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 950px) {
+    .project-card {
+        width: 240px;
+        max-width: 240px;
+    }
+
+    .project-card img,
+    .project-overlay {
+        height: 145px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 24px;
+        margin: 90px 15px 40px 15px;
+    }
+
+    .projects-grid {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-card {
+        width: 90%;
+        max-width: 320px;
+    }
+
+    .project-card img,
+    .project-overlay {
+        width: calc(100% - 30px);
+        height: 170px;
+    }
+
+    .profile-image-placeholder {
+        height: 320px;
+    }
+
+    .tabs {
+        justify-content: flex-start;
+    }
+}
+
+.cv-download {
+    margin-top: 20px;
+}
+
+.cv-download a {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,255,136,0.2);
+    color: #00FFDF;
+    transition: 0.25s ease;
+}
+
+.cv-download a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0,255,136,0.2);
+    text-shadow: 0 0 8px rgba(0,255,136,0.5);
 }

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -14,89 +15,166 @@
     <div class="progress"></div>
 </div>
 
-<!-- Animated Cloud Background -->
-<div class="clouds"></div>
-
-<!-- Floating Glass Navbar -->
-<nav class="navbar">
-    
-</nav>
+<!-- Floating background icons -->
+<div class="floating-icon icon1">⌘</div>
+<div class="floating-icon icon2">✦</div>
+<div class="floating-icon icon3">⌬</div>
 
 <div class="container hidden">
+    <div class="home-layout">
 
-    <h1 class="title">Your Name</h1>
+        <!-- Left side -->
+        <div class="left-side">
+            <h1 class="title">Ace Brandligt</h1>
 
-    <!-- Tabs -->
-    <div class="tabs">
-        <div class="tab-indicator"></div>
-        <button class="tab-btn active" data-tab="about">About</button>
-        <button class="tab-btn" data-tab="projects">Projects</button>
-        <button class="tab-btn" data-tab="contact">Contact</button>
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab-indicator"></div>
+
+                <button class="tab-btn active" data-tab="about">About</button>
+                <button class="tab-btn" data-tab="projects">Projects</button>
+                <button class="tab-btn" data-tab="contact">Contact</button>
+            </div>
+
+            <!-- About -->
+            <div id="about" class="tab-content active">
+                <h2>About Me</h2>
+                <p>My name is Ace Brandligt i'm 18 years old and live in Zandvoort, the Netherlands
+                   Im a student at Mediacollege Amsterdam and i'm studying in my second year of Gamedevelopment focusing on Unity and C#.
+                   And since i was young i always wanted to make games so that is why i want to become a gamedeveloper. My favorite hobbies are gaming, listening to music, watching films, series and anime, and reading manga.
+                </p>
+            
+                <div class="cv-download">
+        <a href="Files/CV Ace Brandligt.pdf" download class="btn">Click here</a>
     </div>
+</div>
 
-    <!-- About -->
-    <div id="about" class="tab-content active">
-        <h2>About Me</h2>
-        <p class="typing"></p>
-    </div>
+            <!-- Projects -->
+            <div id="projects" class="tab-content">
+                <h2>Projects</h2>
 
-    <!-- Projects -->
-    <div id="projects" class="tab-content">
-        <h2>Projects</h2>
+                <div class="projects-grid">
+                    <a href="project1.html" class="project-link page-link">
+                        <div class="project-card reveal tilt-card">
+                            <div class="card-glow"></div>
+                            <img src="images/Schermafbeelding 2026-04-07 120943.png" alt="Startup Landing Page">
+                            <div class="project-overlay">Go to page</div>
+                            <h3>Elemental tower defense</h3>
+                            <p>School project & My first tower defense game.</p>
+                        </div>
+                    </a>
 
-        <div class="project-card reveal">
-            <img src="https://picsum.photos/600/350?1">
-            <h3>Startup Landing Page</h3>
-            <p>Modern responsive website with clean UI.</p>
+                    <a href="project2.html" class="project-link page-link">
+                        <div class="project-card reveal tilt-card">
+                            <div class="card-glow"></div>
+                            <img src="https://picsum.photos/600/350?2" alt="Web Application">
+                            <div class="project-overlay">Go to page</div>
+                            <h3>Work in progress</h3>
+                            <p>Game.</p>
+                        </div>
+                    </a>
+
+                    <a href="project3.html" class="project-link page-link">
+                        <div class="project-card reveal tilt-card">
+                            <div class="card-glow"></div>
+                            <img src="https://picsum.photos/600/350?3" alt="Web Application">
+                            <div class="project-overlay">Go to page</div>
+                            <h3>Work in progress</h3>
+                            <p>Game.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div id="contact" class="tab-content">
+                <h2>Contact</h2>
+
+                <p>
+                    Email:
+                    <a href="mailto:a.c.e.brandligt@gmail.com">
+                        a.c.e.brandligt@gmail.com
+                    </a>
+                </p>
+
+                <br>
+
+                <p>
+                    GitHub:
+                    <a href="https://github.com/Flyboyace" target="_blank" rel="noopener noreferrer">
+                        github.com/Flyboyace
+                    </a>
+                </p>
+
+                <br>
+
+                <p>
+                    LinkedIn:
+                    <a href="https://www.linkedin.com/in/ace-brandligt-83606a334" target="_blank" rel="noopener noreferrer">
+                        linkedin.com/in/ace-brandligt-83606a334
+                    </a>
+                </p>
+            </div>
         </div>
 
-        <div class="project-card reveal">
-            <img src="https://picsum.photos/600/350?2">
-            <h3>Web Application</h3>
-            <p>Interactive app built with JavaScript.</p>
-        </div>
+        <!-- Right side -->
+        <div class="right-side">
+            <div class="profile-panel">
+                <div class="profile-image-placeholder">
+                    <img src="images/image.jpg" alt="Ace Brandligt">
+                    <!-- Later replace with:
+                    <img src="your-photo.jpg" alt="Ace Brandligt">
+                    -->
+                </div>
 
-        <div class="project-card reveal">
-            <img src="https://picsum.photos/600/350?2">
-            <h3>Web Application</h3>
-            <p>Interactive app built with JavaScript.</p>
+                <div class="developer-type" contenteditable="true">
+                    Unity developer/Level designer
+                </div>
+            </div>
         </div>
 
     </div>
-
-    <!-- Contact -->
-    <div id="contact" class="tab-content">
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
-        <p>GitHub: github.com/yourname</p>
-        <p>LinkedIn: linkedin.com/in/yourname</p>
-    </div>
-
 </div>
 
 <script>
-// Loading bar
+/* ---------- Loading Bar ---------- */
 window.addEventListener("load", () => {
-    document.querySelector(".progress").style.width = "100%";
+    const progress = document.querySelector(".progress");
+    const loader = document.querySelector(".loader");
+    const container = document.querySelector(".container");
+
+    progress.style.width = "100%";
+
     setTimeout(() => {
-        document.querySelector(".loader").style.opacity = "0";
-        document.querySelector(".container").classList.remove("hidden");
+        loader.style.opacity = "0";
+        loader.style.pointerEvents = "none";
+        container.classList.remove("hidden");
+        document.body.classList.add("page-entered");
     }, 800);
 });
 
-// Page transition blur
+/* ---------- Blur Transition ---------- */
 const container = document.querySelector(".container");
+
 function blurIn() {
+    container.style.transition = "filter 0.2s ease";
     container.style.filter = "blur(10px)";
+
     setTimeout(() => {
         container.style.filter = "blur(0px)";
     }, 200);
 }
 
-// Tabs
+/* ---------- Tabs ---------- */
 const buttons = document.querySelectorAll(".tab-btn");
 const contents = document.querySelectorAll(".tab-content");
 const indicator = document.querySelector(".tab-indicator");
+
+function updateIndicator(activeBtn) {
+    if (!activeBtn || !indicator) return;
+    indicator.style.width = activeBtn.offsetWidth + "px";
+    indicator.style.left = activeBtn.offsetLeft + "px";
+}
 
 function activateTab(tabId) {
     blurIn();
@@ -104,54 +182,115 @@ function activateTab(tabId) {
     contents.forEach(c => c.classList.remove("active"));
     buttons.forEach(b => b.classList.remove("active"));
 
-    document.getElementById(tabId).classList.add("active");
+    const activeContent = document.getElementById(tabId);
     const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
-    activeBtn.classList.add("active");
 
-    indicator.style.width = activeBtn.offsetWidth + "px";
-    indicator.style.left = activeBtn.offsetLeft + "px";
+    if (activeContent) activeContent.classList.add("active");
+    if (activeBtn) {
+        activeBtn.classList.add("active");
+        updateIndicator(activeBtn);
+    }
 }
 
 buttons.forEach(btn => {
     btn.addEventListener("click", () => activateTab(btn.dataset.tab));
 });
 
-// Typing animation
+window.addEventListener("load", () => {
+    updateIndicator(document.querySelector(".tab-btn.active"));
+});
+
+window.addEventListener("resize", () => {
+    updateIndicator(document.querySelector(".tab-btn.active"));
+});
+
+/* ---------- Typing Animation ---------- */
+const typingElement = document.querySelector(".typing");
 const text = "I'm a modern web developer building clean, animated and high-performance web experiences.";
 let i = 0;
+
 function type() {
+    if (!typingElement) return;
+
     if (i < text.length) {
-        document.querySelector(".typing").textContent += text.charAt(i);
+        typingElement.textContent += text.charAt(i);
         i++;
         setTimeout(type, 35);
     }
 }
+
 type();
 
-// Scroll reveal
+/* ---------- Scroll Reveal ---------- */
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("show");
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
     });
-});
+}, { threshold: 0.2 });
+
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-// Animated Counters
-const counters = document.querySelectorAll(".counter");
-counters.forEach(counter => {
-    const update = () => {
-        const target = +counter.getAttribute("data-target");
-        const count = +counter.innerText;
-        const increment = target / 100;
+/* ---------- Tilt + Mouse Glow ---------- */
+const tiltCards = document.querySelectorAll(".tilt-card");
 
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(update, 20);
-        } else {
-            counter.innerText = target;
+tiltCards.forEach(card => {
+    const glow = card.querySelector(".card-glow");
+
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+
+        if (glow) {
+            glow.style.opacity = "1";
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
         }
-    };
-    update();
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+        if (glow) glow.style.opacity = "0";
+    });
+});
+
+/* ---------- Cursor Glow ---------- */
+const cursorGlow = document.querySelector(".cursor-glow");
+
+window.addEventListener("mousemove", (e) => {
+    if (!cursorGlow) return;
+    cursorGlow.style.left = `${e.clientX}px`;
+    cursorGlow.style.top = `${e.clientY}px`;
+});
+
+/* ---------- Smooth Page Transitions ---------- */
+document.querySelectorAll(".page-link").forEach(link => {
+    link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+
+        if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("http")) {
+            return;
+        }
+
+        e.preventDefault();
+
+        document.body.classList.remove("page-entered");
+        document.body.classList.add("page-exit");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 450);
+    });
 });
 </script>
 
