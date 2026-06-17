@@ -311,27 +311,27 @@ body::before {
 
 <a href="index.html" class="back">← Back</a>
 
-<h1 class="title">Elemental tower defense</h1>
+<h1 class="title">Gamble bot</h1>
 
 <div class="hero-img">
-    <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Elemental Tower Defense gameplay">
+    <img src="images/discord.png" alt="Elemental Tower Defense gameplay">
 </div>
 
 <div class="section">
     <h2>Overview</h2>
     <p>
-        Elemental Tower Defense is my first tower defense game,
-        where you need to defend your base against skeleton enemies with your elemental towers.
-        Such as a fire tower that fires rapidly or an ice tower that slows the enemy down.
+        Gamble bot is a bot that you can chat with and ask to play games of odds with you or solve simple equations as 
+        a bonus. The games you can play with gamble bot are: Coinflip and Roll, with coinflip the bot chooses randomly
+        between Heads or Tails. With Roll the bot chooses a random number between 1 and 100.
     </p>
 </div>
 
 <div class="section">
     <h2>Reflection</h2>
     <p>
-        This was my first tower defense project that I created at school with help from classmates and AI.
-        I struggled most with starting scripts and structuring my code properly. It was also difficult to make my game
-        good replayability wise.
+        This is the first discord bot i created with the help of a tutorial on youtube. The things i strugled most with 
+        was setting up the code in visual studio, using a custom library for the bot and coding in general. I also used .NET but i honestly did not really knew what i
+        was doing on that part. I had fun with this project and would do it again sometime in the future.
     </p>
 </div>
 
@@ -344,11 +344,15 @@ body::before {
         </div>
 
         <div class="tool-item">
-            <img src="images/image-removebg-preview.png" alt="Unity">
+            <img src="images/Discord logo.png" alt="Unity">
         </div>
 
         <div class="tool-item">
-            <img src="images/logo-logo-git-line-cheat-sheet-signage-cheating-mug-png-clipart-removebg-preview.png" alt="Git">
+            <img src="images/DOT net logo.png" alt="Git">
+        </div>
+
+        <div class="tool-item">
+            <img src="images/unnamed.webp" alt="Git">
         </div>
     </div>
 </div>
@@ -356,10 +360,11 @@ body::before {
 <div class="section">
     <h2>Features</h2>
     <p>
-        • Wave system<br>
-        • Music<br>
-        • Different towers<br>
-        • Tower sell mechanic
+        • Coinflip<br>
+        • Roll<br>
+        • Command list<br>
+        • Json reader<br>
+        • simple equations
     </p>
 </div>
 
@@ -373,37 +378,25 @@ body::before {
                 <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Enemy system gif">
             </div>
             <div class="sheet-code">
-<pre><code>public Enemy FindNearestEnemy()
+<pre><code>[Command("coinflip")]
+public async Task CoinFlipAsync(CommandContext ctx)
 {
-    Enemy closestEnemy = null;
-    float shortestDistance = Mathf.Infinity;
+    string result = _random.Next(2) == 0 ? "Heads" : "Tails";
 
-    foreach (Enemy enemy in enemiesInRange)
-    {
-        float distance = Vector3.Distance(
-            transform.position,
-            enemy.transform.position
-        );
+    await ctx.RespondAsync($"🪙 The coin landed on: **{result}**!");
+}
 
-        if (distance &lt; shortestDistance)
-        {
-            shortestDistance = distance;
-            closestEnemy = enemy;
-        }
-    }
 
-    return closestEnemy;
-}</code></pre>
+</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Enemy Detection</h3>
+                <h3>Coinflip</h3>
                 <p>
-                    Towers search for the nearest target in range so they can choose who to attack first.
+                    the user types "!coinflip" and the bot flips the coin with a random outcome
                 </p>
                 <ul class="sheet-list">
-                    <li>Finds closest enemy</li>
-                    <li>Uses tower range logic</li>
-                    <li>Updates during gameplay</li>
+                    <li>🎲 Uses a random number generator to create a random outcome.</li>
+                    <li>💬 Displays the result directly in the Discord chat.</li>
                 </ul>
             </div>
         </div>
@@ -413,59 +406,64 @@ body::before {
                 <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Attack system gif">
             </div>
             <div class="sheet-code">
-<pre><code>public void SellTower()
+<pre><code>[Command("roll")]
+public async Task RollAsync(CommandContext ctx)
 {
-    currency += sellValue;
-    Destroy(gameObject);
-}
+    int randomNumber = _random.Next(1, 101);
 
-public void Attack(Enemy enemy)
-{
-    enemy.TakeDamage(damage);
+    await ctx.RespondAsync($"🎲 You rolled a **{randomNumber}**!");
 }</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Attack and Sell Logic</h3>
+                <h3>Dice roll</h3>
                 <p>
-                    Towers can damage enemies, and the sell system lets the player remove towers and adjust strategy.
+                    The user types "roll" and the bot chooses a random number between 1 and 100
                 </p>
                 <ul class="sheet-list">
-                    <li>Deals damage to enemies</li>
-                    <li>Supports player strategy</li>
-                    <li>Makes gameplay more flexible</li>
+                    <li>🎲 Generates a random number between 1 and 100.</li>
+                    <li>⚡ Uses asynchronous programming (async/await).</li>
                 </ul>
             </div>
         </div>
 
         <div class="sheet-card">
             <div class="sheet-media">
-                <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Wave system gif">
+                <img src="images/unnamed.webp" alt="Wave system gif">
             </div>
             <div class="sheet-code">
-<pre><code>public void StartWave()
+<pre><code>internal class Jsonreader
 {
-    currentWave++;
-    SpawnEnemies();
+    public string token { get; set; }
+    public string prefix { get; set; }
+
+    public async Task ReadJSON()
+    {
+        using (StreamReader sr = new StreamReader("config.json"))
+        {
+            string json = await sr.ReadToEndAsync();
+            JSONStructure data = JsonConvert.DeserializeObject<JSONStructure>(json);
+
+            this.token = data.token;
+            this.prefix = data.prefix;
+        }
+    }
 }
 
-void SpawnEnemies()
+internal sealed class JSONStructure
 {
-    for (int i = 0; i &lt; enemyCount; i++)
-    {
-        Instantiate(enemyPrefab, spawnPoint.position,
-        Quaternion.identity);
-    }
+    public string token { get; set; }
+    public string prefix { get; set; }
 }</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Wave System</h3>
+                <h3>Json reader</h3>
                 <p>
-                    The wave system controls the pace of the game by spawning new rounds of enemies.
+                    The Json reader is specifically made to load the bot token and read the prefix of the Discord bot
                 </p>
                 <ul class="sheet-list">
-                    <li>Starts new enemy rounds</li>
-                    <li>Creates difficulty increase</li>
-                    <li>Improves replayability</li>
+                    <li>🔑 Loads the Discord bot token from the config.json file.</li>
+                    <li>⚙️ Reads the bot's command prefix (e.g., !, ?, $) from the configuration file.</li>
+                    <li>🔄 Converts JSON data into C# objects, making the bot configuration easy to access and manage.</li>
                 </ul>
             </div>
         </div>
@@ -477,8 +475,9 @@ void SpawnEnemies()
 
 <div class="project-side">
     <div class="side-card">
-        <p><strong>Type:</strong> 2D Game</p>
-        <p><strong>Status:</strong> Done</p>
+        <p><strong>Project Type:</strong> Discord bot</p>
+    <p><strong>Role:</strong> Solo Dev</p>
+    <p><strong>Status:</strong> Done</p>
     </div>
 </div>
 
