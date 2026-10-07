@@ -311,7 +311,7 @@ body::before {
 
 <a href="index.html" class="back">← Back</a>
 
-<h1 class="title">Self made level design tools</h1>
+<h1 class="title">Self made Environmental design tools</h1>
 
 <div class="hero-img">
     <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Elemental Tower Defense gameplay">
@@ -320,7 +320,7 @@ body::before {
 <div class="section">
     <h2>Overview</h2>
     <p>
-        
+        I made my own Environmental design tools for the unity engine.<br>The tools i made:<br>1: Path maker tool<br>2: Loot/Enemy scatter tool 
     </p>
 </div>
 
@@ -343,19 +343,20 @@ body::before {
             <img src="images/image-removebg-preview.png" alt="Unity">
         </div>
 
-        <div class="tool-item">
-            <img src="images/logo-logo-git-line-cheat-sheet-signage-cheating-mug-png-clipart-removebg-preview.png" alt="Git">
-        </div>
     </div>
 </div>
 
 <div class="section">
     <h2>Features</h2>
     <p>
-        • Wave system<br>
-        • Music<br>
-        • Different towers<br>
-        • Tower sell mechanic
+        • Draw custom paths<br>
+        • Edit your paths<br>
+        • Automatic prefab for path<br>
+        • Path wraps cleanly on the terrain<br>
+        • <br>
+        • <br>
+        • <br>
+
     </p>
 </div>
 
@@ -366,23 +367,25 @@ body::before {
 
         <div class="sheet-card">
             <div class="sheet-media">
-                <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Enemy system gif">
+                <img src="images/Schermafbeelding 2026-10-05 151615.png" alt="Enemy system gif">
             </div>
             <div class="sheet-code">
-<pre><code>void Update()
+<pre><code>private void OnSceneGUI(
+    SceneView sceneView)
 {
-    if (isPlacingTower)
+    if (path == null)
+        return;
+
+    DrawCurve();
+
+    if (editPoints)
     {
-        FollowMouseWithTower();
+        EditPoints();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Tower tower = currentTower.GetComponent<Tower>();
-            tower.isPlaced = true;
-
-            PlaceTower();
-        }
+        DrawSceneButtons();
     }
+}
+{
 }</code></pre>
             </div>
             <div class="sheet-content">
@@ -473,21 +476,16 @@ private void SellTowers()
 </div>
 
 <p>
-                    GitHub:
-                    <a href="https://github.com/Flyboyace/BO-tower-defense" target="_blank" rel="noopener noreferrer">
-                        github.com/Flyboyace/BO-tower-defense
-                    </a>
+                    
                 </p>
 
 </div>
 
 <div class="project-side">
     <div class="side-card">
-        <p><strong>Project Type:</strong> Tower defense game</p>
-    <p><strong>Genre:</strong> TD</p>
+        <p><strong>Project Type:</strong>Unity engine tools</p>
     <p><strong>Engine:</strong> Unity</p>
-    <p><strong>Role:</strong> Solo Dev</p>
-    <p><strong>Status:</strong> Done</p>
+    <p><strong>Status:</strong> In progress</p>
     </div>
 </div>
 
