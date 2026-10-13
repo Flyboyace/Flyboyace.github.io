@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Elemental Tower Defense | Ace Brandligt</title>
+<title>Self made environmental desgin tools | Ace Brandligt</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
@@ -314,7 +314,7 @@ body::before {
 <h1 class="title">Self made Environmental design tools</h1>
 
 <div class="hero-img">
-    <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Elemental Tower Defense gameplay">
+    <img src="images/path drawing.gif" alt="Elemental Tower Defense gameplay">
 </div>
 
 <div class="section">
@@ -327,7 +327,7 @@ body::before {
 <div class="section">
     <h2>Reflection</h2>
     <p>
-        
+        This was my first time making tools like this and i really enjoyed making these tools, i learned that OnSceneGUI is very important to use when making these tools otherwise i cant see the path points for example. I also learned that a editor folder IS mandatory when making this because unity will not recognize it as a tool if you put your scripts in a different folder than a editor folder
     </p>
 </div>
 
@@ -353,9 +353,9 @@ body::before {
         • Edit your paths<br>
         • Automatic prefab for path<br>
         • Path wraps cleanly on the terrain<br>
-        • <br>
-        • <br>
-        • <br>
+        • Lots of options to scatter your loot or enemy's<br>
+        • Delete option for your loot or enemy's<br>
+        • Uses prefabs of choice to scatter<br>
 
     </p>
 </div>
@@ -389,85 +389,107 @@ body::before {
 }</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Tower placement</h3>
+                <h3>OnSceneGUI</h3>
                 <p>
-                    With left mouse button you can place towers around the map up to 7 towers.
+                    The OnSceneGUI method in my code allows me to see all visual functions in my sceneView
                 </p>
                 <ul class="sheet-list">
-                    <li>tower follows mouse until placed </li>
-                    <li>Limit of 7 towers</li>
-                    <li>Can place everywhere</li>
+                    <li>For example it allows me to see the + and - buttons in my scene, or the path points in my scene. </li>
                 </ul>
             </div>
         </div>
 
         <div class="sheet-card">
             <div class="sheet-media">
-                <img src="images/tower sell.gif" alt="Attack system gif">
+                <img src="images/path drawing.gif" alt="Attack system gif">
             </div>
             <div class="sheet-code">
-<pre><code>public void SellTower()
-private void SellTowers()
+<pre><code>private void HandleDrawing()
 {
-    foreach (Transform t in towerList)
+    Event e = Event.current;
+
+    if (e.type != EventType.MouseDown ||
+        e.button != 0 ||
+        e.alt)
     {
-        currency.AddMoney(50);
-        Destroy(t.gameObject); 
+        return;
     }
-    towerList.Clear();
-    placement.towerAmount = 0; 
+
+    Ray ray = HandleUtility.GUIPointToWorldRay(
+        e.mousePosition
+    );
+
+    if (Physics.Raycast(
+        ray,
+        out RaycastHit hit,
+        Mathf.Infinity))
+    {
+        AddPoint(hit.point);
+        e.Use();
+    }
+}
+
+{
+
 }</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Tower sell</h3>
+                <h3>Path drawing</h3>
                 <p>
-                    The towers sell mechanic lets players sell all their towers at once for currency
+                    My path drawing mechanic allows me to draw custom paths on unity terrain 
                 </p>
                 <ul class="sheet-list">
-                    <li>Sells all towers at once </li>
-                    <li>Low currency return</li>
-                    <li>strategic button to use</li>
+                    <li>Path is editable</li>
+                    <li>Path wraps cleanly on terrain</li>
+                    <li>Instantly creates a mesh for the path</li>
                 </ul>
             </div>
         </div>
 
         <div class="sheet-card">
             <div class="sheet-media">
-                <img src="images/currency.gif" alt="Wave system gif">
+                <img src="images/Enemy&Loot scatter tool.gif " alt="Wave system gif">
             </div>
             <div class="sheet-code">
-<pre><code>    void Start()
+<pre><code>private void SpawnLoot(GameObject prefab, Vector3 position)
+{
+    if (prefab == null) return;
+
+    if (Physics.Raycast(
+        position + Vector3.up * 100f,
+        Vector3.down,
+        out RaycastHit hit,
+        200f,
+        terrainLayer))
     {
-        m_CurrencyText.text = "$: " + Money.ToString();
+        GameObject loot = (GameObject)
+            PrefabUtility.InstantiatePrefab(prefab);
+
+        loot.transform.position = hit.point;
+        loot.transform.rotation = Quaternion.Euler(
+            0f, Random.Range(0f, 360f), 0f
+        );
+
+        float scale = Random.Range(minScale, maxScale);
+        loot.transform.localScale *= scale;
+
+        Undo.RegisterCreatedObjectUndo(
+            loot, "Spawn Loot"
+        );
     }
-
-    void Update()
-    {
-        
-    }
-
-    public void AddMoney(int money)
-    {
-        Money += money;
-        m_CurrencyText.text = "$: " + Money.ToString();
-
-    }
-
-    public void RemoveMoney(int money) 
-    {
-        Money -= money;
-        m_CurrencyText.text = "$: " + Money.ToString();
+}
+{
 }</code></pre>
             </div>
             <div class="sheet-content">
-                <h3>Currency System</h3>
+                <h3>Enemy/Loot scatter tool</h3>
                 <p>
-                    The currency system lets players earn money by killing enemies to buy new towers. 
+                    This scatter tool allows me to scatter prefabs of choice on the terrain, in this case enemies and Loot
                 </p>
                 <ul class="sheet-list">
-                    <li>can buy different towers</li>
-                    <li>50$ with each kill</li>
-                    <li>Improves replayability</li>
+                    <li>1 to 4 prefabs of choice to scatter</li>
+                    <li>Brush radius is customizable</li>
+                    <li>Delete option to easily delete the scattered prefabs</li>
                 </ul>
             </div>
         </div>

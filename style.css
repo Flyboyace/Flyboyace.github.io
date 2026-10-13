@@ -82,7 +82,7 @@ body::after {
 .progress {
     width: 0;
     height: 100%;
-    background: linear-gradient(90deg, #00ff88, #00AAFA, #00FFDF);
+    background: linear-gradient(90deg, #3e4743, #00AAFA, #00FFDF);
     box-shadow: 0 0 12px rgba(0,255,136,0.6);
     transition: width 0.8s ease;
 }
@@ -126,10 +126,10 @@ body::after {
     max-width: 1400px;
     margin: 110px 0 80px 55px;
     padding: 40px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(232, 7, 7, 0.05);
     backdrop-filter: blur(15px);
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(0,255,100,0.2);
+    box-shadow: 0 0 40px rgba(6, 55, 26, 0.2);
     transition: 0.4s ease;
     position: relative;
     z-index: 1;
