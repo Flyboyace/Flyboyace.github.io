@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <title>Elemental Tower Defense | Ace Brandligt</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Prism.js syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
 <style>
 *,
@@ -38,7 +45,11 @@ body::before {
     left: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(255,170,0,0.25), transparent 70%);
+    background: radial-gradient(
+        circle,
+        rgba(255,170,0,0.25),
+        transparent 70%
+    );
     filter: blur(80px);
     z-index: -2;
 }
@@ -78,7 +89,7 @@ body::before {
     color: #00ff88;
 }
 
-/* Back */
+/* Back link */
 .back {
     display: inline-block;
     margin-bottom: 25px;
@@ -90,7 +101,7 @@ body::before {
     text-shadow: 0 0 10px #00ff88;
 }
 
-/* Hero */
+/* Hero image */
 .hero-img {
     width: 100%;
     border-radius: 16px;
@@ -153,10 +164,10 @@ body::before {
     object-fit: contain;
 }
 
-/* Visual Sheet */
+/* Development Sheet */
 .visual-sheet {
     display: grid;
-    grid-template-columns: repeat(3, minmax(340px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
     margin-top: 18px;
 }
@@ -176,6 +187,7 @@ body::before {
     box-shadow: 0 0 24px rgba(0,255,136,0.18);
 }
 
+/* Card media */
 .sheet-media {
     height: 280px;
     display: flex;
@@ -193,8 +205,9 @@ body::before {
     display: block;
 }
 
+/* Code panels */
 .sheet-code {
-    background: rgba(0, 0, 0, 0.65);
+    background: #1e1e1e;
     border-bottom: 1px solid rgba(0,255,136,0.12);
     padding: 18px;
     min-height: 220px;
@@ -202,18 +215,65 @@ body::before {
     overflow: auto;
 }
 
-.sheet-code pre {
+/* Force Orbitron everywhere, including Prism */
+.sheet-code pre[class*="language-"],
+.sheet-code code[class*="language-"],
+.sheet-code pre[class*="language-"] span {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 0.78rem;
+    font-weight: 400;
+    text-shadow: none !important;
+}
+
+.sheet-code pre[class*="language-"] {
     margin: 0;
-}
-
-.sheet-code code {
-    color: #00FFDF;
-    font-size: 0.88rem;
-    line-height: 1.55;
+    padding: 0;
+    background: transparent !important;
+    overflow: visible;
+    tab-size: 4;
     white-space: pre;
-    display: block;
 }
 
+.sheet-code code[class*="language-"] {
+    line-height: 1.8;
+    white-space: pre;
+}
+
+/* C# syntax colors */
+.sheet-code .token.keyword {
+    color: #569cd6;
+}
+
+.sheet-code .token.function {
+    color: #dcdcaa;
+}
+
+.sheet-code .token.string {
+    color: #ce9178;
+}
+
+.sheet-code .token.number {
+    color: #b5cea8;
+}
+
+.sheet-code .token.comment {
+    color: #6a9955;
+}
+
+.sheet-code .token.class-name {
+    color: #4ec9b0;
+}
+
+.sheet-code .token.operator,
+.sheet-code .token.punctuation {
+    color: #d4d4d4;
+}
+
+.sheet-code .token.boolean {
+    color: #569cd6;
+}
+
+/* Card content */
 .sheet-content {
     padding: 22px;
 }
@@ -241,7 +301,7 @@ body::before {
     line-height: 1.6;
 }
 
-/* Side */
+/* Sidebar */
 .side-card {
     background: rgba(255,255,255,0.06);
     padding: 20px;
@@ -255,10 +315,20 @@ body::before {
     line-height: 1.7;
 }
 
+/* GitHub */
+.github-link {
+    color: #00FFDF;
+    overflow-wrap: anywhere;
+}
+
+.github-link:hover {
+    text-shadow: 0 0 10px #00ff88;
+}
+
 /* Responsive */
 @media (max-width: 1300px) {
     .visual-sheet {
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -301,10 +371,10 @@ body::before {
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
-
 <div class="project-layout">
 
 <div class="project-main">
@@ -314,7 +384,10 @@ body::before {
 <h1 class="title">Elemental tower defense</h1>
 
 <div class="hero-img">
-    <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Elemental Tower Defense gameplay">
+    <img
+        src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif"
+        alt="Elemental Tower Defense gameplay"
+    >
 </div>
 
 <div class="section">
@@ -348,7 +421,10 @@ body::before {
         </div>
 
         <div class="tool-item">
-            <img src="images/logo-logo-git-line-cheat-sheet-signage-cheating-mug-png-clipart-removebg-preview.png" alt="Git">
+            <img
+                src="images/logo-logo-git-line-cheat-sheet-signage-cheating-mug-png-clipart-removebg-preview.png"
+                alt="Git"
+            >
         </div>
     </div>
 </div>
@@ -368,12 +444,18 @@ body::before {
 
     <div class="visual-sheet">
 
+        <!-- Tower placement -->
         <div class="sheet-card">
+
             <div class="sheet-media">
-                <img src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif" alt="Enemy system gif">
+                <img
+                    src="images/508926559-b0dbc81b-8cf2-41ff-832c-0264f9ebfd2f.gif"
+                    alt="Tower placement gameplay"
+                >
             </div>
+
             <div class="sheet-code">
-<pre><code>void Update()
+<pre><code class="language-csharp">void Update()
 {
     if (isPlacingTower)
     {
@@ -381,7 +463,7 @@ body::before {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Tower tower = currentTower.GetComponent<Tower>();
+            Tower tower = currentTower.GetComponent&lt;Tower&gt;();
             tower.isPlaced = true;
 
             PlaceTower();
@@ -389,109 +471,120 @@ body::before {
     }
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Tower placement</h3>
                 <p>
                     With left mouse button you can place towers around the map up to 7 towers.
                 </p>
                 <ul class="sheet-list">
-                    <li>tower follows mouse until placed </li>
+                    <li>Tower follows mouse until placed</li>
                     <li>Limit of 7 towers</li>
                     <li>Can place everywhere</li>
                 </ul>
             </div>
+
         </div>
 
+        <!-- Tower selling -->
         <div class="sheet-card">
+
             <div class="sheet-media">
-                <img src="images/tower sell.gif" alt="Attack system gif">
+                <img src="images/tower sell.gif" alt="Tower selling gameplay">
             </div>
+
             <div class="sheet-code">
-<pre><code>public void SellTower()
-private void SellTowers()
+<pre><code class="language-csharp">public void SellTower()
 {
     foreach (Transform t in towerList)
     {
         currency.AddMoney(50);
-        Destroy(t.gameObject); 
+        Destroy(t.gameObject);
     }
+
     towerList.Clear();
-    placement.towerAmount = 0; 
+    placement.towerAmount = 0;
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Tower sell</h3>
                 <p>
-                    The towers sell mechanic lets players sell all their towers at once for currency
+                    The tower selling mechanic lets players sell all their towers at once for currency.
                 </p>
                 <ul class="sheet-list">
-                    <li>Sells all towers at once </li>
+                    <li>Sells all towers at once</li>
                     <li>Low currency return</li>
-                    <li>strategic button to use</li>
+                    <li>Strategic button to use</li>
                 </ul>
             </div>
+
         </div>
 
+        <!-- Currency system -->
         <div class="sheet-card">
+
             <div class="sheet-media">
-                <img src="images/currency.gif" alt="Wave system gif">
+                <img src="images/currency.gif" alt="Currency system gameplay">
             </div>
+
             <div class="sheet-code">
-<pre><code>    void Start()
-    {
-        m_CurrencyText.text = "$: " + Money.ToString();
-    }
+<pre><code class="language-csharp">void Start()
+{
+    m_CurrencyText.text = "$: " + Money.ToString();
+}
 
-    void Update()
-    {
-        
-    }
+public void AddMoney(int money)
+{
+    Money += money;
+    m_CurrencyText.text = "$: " + Money.ToString();
+}
 
-    public void AddMoney(int money)
-    {
-        Money += money;
-        m_CurrencyText.text = "$: " + Money.ToString();
-
-    }
-
-    public void RemoveMoney(int money) 
-    {
-        Money -= money;
-        m_CurrencyText.text = "$: " + Money.ToString();
+public void RemoveMoney(int money)
+{
+    Money -= money;
+    m_CurrencyText.text = "$: " + Money.ToString();
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Currency System</h3>
                 <p>
-                    The currency system lets players earn money by killing enemies to buy new towers. 
+                    The currency system lets players earn money by killing enemies to buy new towers.
                 </p>
                 <ul class="sheet-list">
-                    <li>can buy different towers</li>
-                    <li>50$ with each kill</li>
+                    <li>Can buy different towers</li>
+                    <li>$50 with each kill</li>
                     <li>Improves replayability</li>
                 </ul>
             </div>
+
         </div>
 
     </div>
 </div>
 
 <p>
-                    GitHub:
-                    <a href="https://github.com/Flyboyace/BO-tower-defense" target="_blank" rel="noopener noreferrer">
-                        github.com/Flyboyace/BO-tower-defense
-                    </a>
-                </p>
+    GitHub:
+    <a
+        class="github-link"
+        href="https://github.com/Flyboyace/BO-tower-defense"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        github.com/Flyboyace/BO-tower-defense
+    </a>
+</p>
 
 </div>
 
 <div class="project-side">
     <div class="side-card">
         <p><strong>Project Type:</strong> Tower defense game</p>
-    <p><strong>Genre:</strong> TD</p>
-    <p><strong>Engine:</strong> Unity</p>
-    <p><strong>Role:</strong> Solo Dev</p>
-    <p><strong>Status:</strong> Done</p>
+        <p><strong>Genre:</strong> TD</p>
+        <p><strong>Engine:</strong> Unity</p>
+        <p><strong>Role:</strong> Solo Dev</p>
+        <p><strong>Status:</strong> Done</p>
     </div>
 </div>
 
@@ -499,9 +592,13 @@ private void SellTowers()
 </div>
 
 <script>
-window.onload = () => {
+window.addEventListener("load", () => {
     document.body.classList.add("page-entered");
-};
+
+    if (window.Prism) {
+        Prism.highlightAll();
+    }
+});
 </script>
 
 </body>

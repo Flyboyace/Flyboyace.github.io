@@ -1,10 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Gamble bot | Ace Brandligt</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Prism syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
 <style>
 *,
@@ -78,7 +85,7 @@ body::before {
     color: #00ff88;
 }
 
-/* Back */
+/* Back link */
 .back {
     display: inline-block;
     margin-bottom: 25px;
@@ -90,7 +97,7 @@ body::before {
     text-shadow: 0 0 10px #00ff88;
 }
 
-/* Hero */
+/* Hero image */
 .hero-img {
     width: 100%;
     border-radius: 16px;
@@ -153,7 +160,7 @@ body::before {
     object-fit: contain;
 }
 
-/* Visual Sheet */
+/* Development sheet */
 .visual-sheet {
     display: grid;
     grid-template-columns: repeat(3, minmax(340px, 1fr));
@@ -166,6 +173,7 @@ body::before {
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(0,255,136,0.15);
+    min-width: 0;
     min-height: 760px;
     box-shadow: 0 0 18px rgba(0,255,100,0.06);
     transition: 0.25s ease;
@@ -176,6 +184,7 @@ body::before {
     box-shadow: 0 0 24px rgba(0,255,136,0.18);
 }
 
+/* Code card media */
 .sheet-media {
     height: 280px;
     display: flex;
@@ -193,8 +202,9 @@ body::before {
     display: block;
 }
 
+/* Code panels — matching Tower Defense */
 .sheet-code {
-    background: rgba(0, 0, 0, 0.65);
+    background: #1e1e1e;
     border-bottom: 1px solid rgba(0,255,136,0.12);
     padding: 18px;
     min-height: 220px;
@@ -202,18 +212,65 @@ body::before {
     overflow: auto;
 }
 
-.sheet-code pre {
+/* Same font and size as Tower Defense */
+.sheet-code pre[class*="language-"],
+.sheet-code code[class*="language-"],
+.sheet-code pre[class*="language-"] span {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 0.78rem;
+    font-weight: 400;
+    text-shadow: none !important;
+}
+
+.sheet-code pre[class*="language-"] {
     margin: 0;
-}
-
-.sheet-code code {
-    color: #00FFDF;
-    font-size: 0.88rem;
-    line-height: 1.55;
+    padding: 0;
+    background: transparent !important;
+    overflow: visible;
+    tab-size: 4;
     white-space: pre;
-    display: block;
 }
 
+.sheet-code code[class*="language-"] {
+    line-height: 1.8;
+    white-space: pre;
+}
+
+/* Same syntax colors as Tower Defense */
+.sheet-code .token.keyword {
+    color: #569cd6 !important;
+}
+
+.sheet-code .token.function {
+    color: #dcdcaa !important;
+}
+
+.sheet-code .token.string {
+    color: #ce9178 !important;
+}
+
+.sheet-code .token.number {
+    color: #b5cea8 !important;
+}
+
+.sheet-code .token.comment {
+    color: #6a9955 !important;
+}
+
+.sheet-code .token.class-name {
+    color: #4ec9b0 !important;
+}
+
+.sheet-code .token.operator,
+.sheet-code .token.punctuation {
+    color: #d4d4d4 !important;
+}
+
+.sheet-code .token.boolean {
+    color: #569cd6 !important;
+}
+
+/* Code card content */
 .sheet-content {
     padding: 22px;
 }
@@ -241,7 +298,7 @@ body::before {
     line-height: 1.6;
 }
 
-/* Side */
+/* Sidebar */
 .side-card {
     background: rgba(255,255,255,0.06);
     padding: 20px;
@@ -255,7 +312,7 @@ body::before {
     line-height: 1.7;
 }
 
-/* Responsive */
+/* Responsive layout */
 @media (max-width: 1300px) {
     .visual-sheet {
         grid-template-columns: repeat(2, minmax(320px, 1fr));
@@ -286,6 +343,10 @@ body::before {
         padding: 24px;
     }
 
+    .title {
+        font-size: 2rem;
+    }
+
     .sheet-card {
         min-height: auto;
     }
@@ -301,112 +362,112 @@ body::before {
 }
 </style>
 </head>
+
 <body>
-
 <div class="container">
-
 <div class="project-layout">
 
-<div class="project-main">
+<main class="project-main">
 
 <a href="index.html" class="back">← Back</a>
 
 <h1 class="title">Gamble bot</h1>
 
 <div class="hero-img">
-    <img src="images/Discord.png" alt="Elemental Tower Defense gameplay">
+    <img src="images/Discord.png" alt="Gamble bot Discord project">
 </div>
 
-<div class="section">
+<section class="section">
     <h2>Overview</h2>
     <p>
-        Gamble bot is a bot that you can chat with and ask to play games of odds with you or solve simple equations as 
+        Gamble bot is a bot that you can chat with and ask to play games of odds with you or solve simple equations as
         a bonus. The games you can play with gamble bot are: Coinflip and Roll, with coinflip the bot chooses randomly
         between Heads or Tails. With Roll the bot chooses a random number between 1 and 100.
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Reflection</h2>
     <p>
-        This is the first discord bot i created with the help of a tutorial on youtube. The things i strugled most with 
+        This is the first discord bot i created with the help of a tutorial on youtube. The things i strugled most with
         was setting up the code in visual studio, using a custom library for the bot and coding in general. I also used .NET but i honestly did not really knew what i
         was doing on that part because it is really hard to learn. I had fun with this project and would do it again sometime in the future.
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>What I Used</h2>
-
     <div class="project-tools">
         <div class="tool-item">
             <img src="images/C-Sharp-Tutorials.png" alt="C#">
         </div>
 
         <div class="tool-item">
-            <img src="images/Discord logo.png" alt="Unity">
+            <img src="images/Discord logo.png" alt="Discord">
         </div>
 
         <div class="tool-item">
-            <img src="images/DOT net logo.png" alt="Git">
+            <img src="images/DOT net logo.png" alt=".NET">
         </div>
 
         <div class="tool-item">
-            <img src="images/unnamed.webp" alt="Git">
+            <img src="images/unnamed.webp" alt="Project tool">
         </div>
     </div>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Features</h2>
     <p>
         • Coinflip<br>
         • Roll<br>
         • Command list<br>
         • Json reader<br>
-        • simple equations
+        • Simple equations
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Development Sheet</h2>
 
     <div class="visual-sheet">
 
-        <div class="sheet-card">
+        <!-- Coinflip -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/Coinflip.gif" alt="Enemy system gif">
+                <img src="images/Coinflip.gif" alt="Coinflip feature">
             </div>
+
             <div class="sheet-code">
-<pre><code>[Command("coinflip")]
+<pre><code class="language-csharp">[Command("coinflip")]
 public async Task CoinFlipAsync(CommandContext ctx)
 {
     string result = _random.Next(2) == 0 ? "Heads" : "Tails";
 
     await ctx.RespondAsync($"🪙 The coin landed on: **{result}**!");
-}
-
-
-</code></pre>
+}</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Coinflip</h3>
                 <p>
-                    the user types "!coinflip" and the bot flips the coin with a random outcome
+                    The user types "!coinflip" and the bot flips the coin with a random outcome.
                 </p>
                 <ul class="sheet-list">
                     <li>🎲 Uses a random number generator to create a random outcome.</li>
                     <li>💬 Displays the result directly in the Discord chat.</li>
                 </ul>
             </div>
-        </div>
+        </article>
 
-        <div class="sheet-card">
+        <!-- Dice roll -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/ezgif-82249b0043ba59ab.gif" alt="Attack system gif">
+                <img src="images/ezgif-82249b0043ba59ab.gif" alt="Dice roll feature">
             </div>
+
             <div class="sheet-code">
-<pre><code>[Command("roll")]
+<pre><code class="language-csharp">[Command("roll")]
 public async Task RollAsync(CommandContext ctx)
 {
     int randomNumber = _random.Next(1, 101);
@@ -414,24 +475,27 @@ public async Task RollAsync(CommandContext ctx)
     await ctx.RespondAsync($"🎲 You rolled a **{randomNumber}**!");
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Dice roll</h3>
                 <p>
-                    The user types "roll" and the bot chooses a random number between 1 and 100
+                    The user types "roll" and the bot chooses a random number between 1 and 100.
                 </p>
                 <ul class="sheet-list">
                     <li>🎲 Generates a random number between 1 and 100.</li>
                     <li>⚡ Uses asynchronous programming (async/await).</li>
                 </ul>
             </div>
-        </div>
+        </article>
 
-        <div class="sheet-card">
+        <!-- JSON reader -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/unnamed.webp" alt="Wave system gif">
+                <img src="images/unnamed.webp" alt="JSON reader feature">
             </div>
+
             <div class="sheet-code">
-<pre><code>internal class Jsonreader
+<pre><code class="language-csharp">internal class Jsonreader
 {
     public string token { get; set; }
     public string prefix { get; set; }
@@ -441,7 +505,7 @@ public async Task RollAsync(CommandContext ctx)
         using (StreamReader sr = new StreamReader("config.json"))
         {
             string json = await sr.ReadToEndAsync();
-            JSONStructure data = JsonConvert.DeserializeObject<JSONStructure>(json);
+            JSONStructure data = JsonConvert.DeserializeObject&lt;JSONStructure&gt;(json);
 
             this.token = data.token;
             this.prefix = data.prefix;
@@ -455,10 +519,11 @@ internal sealed class JSONStructure
     public string prefix { get; set; }
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Json reader</h3>
                 <p>
-                    The Json reader is specifically made to load the bot token and read the prefix of the Discord bot
+                    The Json reader is specifically made to load the bot token and read the prefix of the Discord bot.
                 </p>
                 <ul class="sheet-list">
                     <li>🔑 Loads the Discord bot token from the config.json file.</li>
@@ -466,28 +531,32 @@ internal sealed class JSONStructure
                     <li>🔄 Converts JSON data into C# objects, making the bot configuration easy to access and manage.</li>
                 </ul>
             </div>
-        </div>
+        </article>
 
     </div>
-</div>
+</section>
 
-</div>
+</main>
 
-<div class="project-side">
+<aside class="project-side">
     <div class="side-card">
         <p><strong>Project Type:</strong> Discord bot</p>
-    <p><strong>Role:</strong> Solo Dev</p>
-    <p><strong>Status:</strong> Done</p>
+        <p><strong>Role:</strong> Solo Dev</p>
+        <p><strong>Status:</strong> Done</p>
     </div>
-</div>
+</aside>
 
 </div>
 </div>
 
 <script>
-window.onload = () => {
+window.addEventListener("load", () => {
     document.body.classList.add("page-entered");
-};
+
+    if (window.Prism) {
+        Prism.highlightAll();
+    }
+});
 </script>
 
 </body>

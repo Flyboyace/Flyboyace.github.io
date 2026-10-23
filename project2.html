@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Self made environmental desgin tools | Ace Brandligt</title>
+<title>Self made environmental design tools | Ace Brandligt</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Same Prism theme and C# language support as Tower Defense -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
 <style>
 *,
@@ -38,9 +44,14 @@ body::before {
     left: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(255,170,0,0.25), transparent 70%);
+    background: radial-gradient(
+        circle,
+        rgba(255,170,0,0.25),
+        transparent 70%
+    );
     filter: blur(80px);
     z-index: -2;
+    pointer-events: none;
 }
 
 /* Container */
@@ -78,7 +89,7 @@ body::before {
     color: #00ff88;
 }
 
-/* Back */
+/* Back link */
 .back {
     display: inline-block;
     margin-bottom: 25px;
@@ -90,7 +101,7 @@ body::before {
     text-shadow: 0 0 10px #00ff88;
 }
 
-/* Hero */
+/* Hero image */
 .hero-img {
     width: 100%;
     border-radius: 16px;
@@ -153,10 +164,10 @@ body::before {
     object-fit: contain;
 }
 
-/* Visual Sheet */
+/* Development sheet */
 .visual-sheet {
     display: grid;
-    grid-template-columns: repeat(3, minmax(340px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
     margin-top: 18px;
 }
@@ -166,6 +177,7 @@ body::before {
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(0,255,136,0.15);
+    min-width: 0;
     min-height: 760px;
     box-shadow: 0 0 18px rgba(0,255,100,0.06);
     transition: 0.25s ease;
@@ -176,6 +188,7 @@ body::before {
     box-shadow: 0 0 24px rgba(0,255,136,0.18);
 }
 
+/* Card media */
 .sheet-media {
     height: 280px;
     display: flex;
@@ -193,8 +206,9 @@ body::before {
     display: block;
 }
 
+/* Code panels — matching Tower Defense */
 .sheet-code {
-    background: rgba(0, 0, 0, 0.65);
+    background: #1e1e1e;
     border-bottom: 1px solid rgba(0,255,136,0.12);
     padding: 18px;
     min-height: 220px;
@@ -202,18 +216,65 @@ body::before {
     overflow: auto;
 }
 
-.sheet-code pre {
+/* Same font and size as Tower Defense */
+.sheet-code pre[class*="language-"],
+.sheet-code code[class*="language-"],
+.sheet-code pre[class*="language-"] span {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 0.78rem;
+    font-weight: 400;
+    text-shadow: none !important;
+}
+
+.sheet-code pre[class*="language-"] {
     margin: 0;
-}
-
-.sheet-code code {
-    color: #00FFDF;
-    font-size: 0.88rem;
-    line-height: 1.55;
+    padding: 0;
+    background: transparent !important;
+    overflow: visible;
+    tab-size: 4;
     white-space: pre;
-    display: block;
 }
 
+.sheet-code code[class*="language-"] {
+    line-height: 1.8;
+    white-space: pre;
+}
+
+/* Exact syntax colors from Tower Defense */
+.sheet-code .token.keyword {
+    color: #569cd6 !important;
+}
+
+.sheet-code .token.function {
+    color: #dcdcaa !important;
+}
+
+.sheet-code .token.string {
+    color: #ce9178 !important;
+}
+
+.sheet-code .token.number {
+    color: #b5cea8 !important;
+}
+
+.sheet-code .token.comment {
+    color: #6a9955 !important;
+}
+
+.sheet-code .token.class-name {
+    color: #4ec9b0 !important;
+}
+
+.sheet-code .token.operator,
+.sheet-code .token.punctuation {
+    color: #d4d4d4 !important;
+}
+
+.sheet-code .token.boolean {
+    color: #569cd6 !important;
+}
+
+/* Card content */
 .sheet-content {
     padding: 22px;
 }
@@ -241,7 +302,7 @@ body::before {
     line-height: 1.6;
 }
 
-/* Side */
+/* Sidebar */
 .side-card {
     background: rgba(255,255,255,0.06);
     padding: 20px;
@@ -255,10 +316,14 @@ body::before {
     line-height: 1.7;
 }
 
+.side-card p:last-child {
+    margin-bottom: 0;
+}
+
 /* Responsive */
 @media (max-width: 1300px) {
     .visual-sheet {
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -286,6 +351,10 @@ body::before {
         padding: 24px;
     }
 
+    .title {
+        font-size: 2rem;
+    }
+
     .sheet-card {
         min-height: auto;
     }
@@ -301,52 +370,57 @@ body::before {
 }
 </style>
 </head>
+
 <body>
-
 <div class="container">
-
 <div class="project-layout">
 
-<div class="project-main">
+<main class="project-main">
 
 <a href="index.html" class="back">← Back</a>
 
 <h1 class="title">Self made Environmental design tools</h1>
 
 <div class="hero-img">
-    <img src="images/path drawing.gif" alt="Elemental Tower Defense gameplay">
+    <img src="images/path drawing.gif" alt="Environmental design tools in Unity">
 </div>
 
-<div class="section">
+<section class="section">
     <h2>Overview</h2>
     <p>
-        I made my own Environmental design tools for the unity engine.<br>The tools i made:<br>1: Path maker tool<br>2: Loot/Enemy scatter tool 
+        I made my own Environmental design tools for the unity engine.<br>
+        The tools i made:<br>
+        1: Path maker tool<br>
+        2: Loot/Enemy scatter tool
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Reflection</h2>
     <p>
-        This was my first time making tools like this and i really enjoyed making these tools, i learned that OnSceneGUI is very important to use when making these tools otherwise i cant see the path points for example. I also learned that a editor folder IS mandatory when making this because unity will not recognize it as a tool if you put your scripts in a different folder than a editor folder
+        This was my first time making tools like this and i really enjoyed
+        making these tools, i learned that OnSceneGUI is very important
+        to use when making these tools otherwise i cant see the path
+        points for example. I also learned that a editor folder IS
+        mandatory when making this because unity will not recognize it
+        as a tool if you put your scripts in a different folder than a
+        editor folder
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>What I Used</h2>
-
     <div class="project-tools">
         <div class="tool-item">
             <img src="images/C-Sharp-Tutorials.png" alt="C#">
         </div>
-
         <div class="tool-item">
             <img src="images/image-removebg-preview.png" alt="Unity">
         </div>
-
     </div>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Features</h2>
     <p>
         • Draw custom paths<br>
@@ -355,22 +429,24 @@ body::before {
         • Path wraps cleanly on the terrain<br>
         • Lots of options to scatter your loot or enemy's<br>
         • Delete option for your loot or enemy's<br>
-        • Uses prefabs of choice to scatter<br>
-
+        • Uses prefabs of choice to scatter
     </p>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
     <h2>Development Sheet</h2>
 
     <div class="visual-sheet">
 
-        <div class="sheet-card">
+        <!-- OnSceneGUI -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/Schermafbeelding 2026-10-05 151615.png" alt="Enemy system gif">
+                <img src="images/Schermafbeelding 2026-10-05 151615.png"
+                     alt="OnSceneGUI development screenshot">
             </div>
+
             <div class="sheet-code">
-<pre><code>private void OnSceneGUI(
+<pre><code class="language-csharp">private void OnSceneGUI(
     SceneView sceneView)
 {
     if (path == null)
@@ -381,30 +457,34 @@ body::before {
     if (editPoints)
     {
         EditPoints();
-
         DrawSceneButtons();
     }
-}
-{
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>OnSceneGUI</h3>
                 <p>
-                    The OnSceneGUI method in my code allows me to see all visual functions in my sceneView
+                    The OnSceneGUI method in my code allows me to see all
+                    visual functions in my sceneView.
                 </p>
                 <ul class="sheet-list">
-                    <li>For example it allows me to see the + and - buttons in my scene, or the path points in my scene. </li>
+                    <li>
+                        For example it allows me to see the + and -
+                        buttons in my scene, or the path points in my scene.
+                    </li>
                 </ul>
             </div>
-        </div>
+        </article>
 
-        <div class="sheet-card">
+        <!-- Path drawing -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/path drawing.gif" alt="Attack system gif">
+                <img src="images/path drawing.gif" alt="Path drawing tool">
             </div>
+
             <div class="sheet-code">
-<pre><code>private void HandleDrawing()
+<pre><code class="language-csharp">private void HandleDrawing()
 {
     Event e = Event.current;
 
@@ -427,16 +507,14 @@ body::before {
         AddPoint(hit.point);
         e.Use();
     }
-}
-
-{
-
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Path drawing</h3>
                 <p>
-                    My path drawing mechanic allows me to draw custom paths on unity terrain 
+                    My path drawing mechanic allows me to draw custom
+                    paths on unity terrain.
                 </p>
                 <ul class="sheet-list">
                     <li>Path is editable</li>
@@ -444,16 +522,22 @@ body::before {
                     <li>Instantly creates a mesh for the path</li>
                 </ul>
             </div>
-        </div>
+        </article>
 
-        <div class="sheet-card">
+        <!-- Enemy and loot scatter -->
+        <article class="sheet-card">
             <div class="sheet-media">
-                <img src="images/Enemy&Loot scatter tool.gif " alt="Wave system gif">
+                <img src="images/Enemy&Loot scatter tool.gif"
+                     alt="Enemy and loot scatter tool">
             </div>
+
             <div class="sheet-code">
-<pre><code>private void SpawnLoot(GameObject prefab, Vector3 position)
+<pre><code class="language-csharp">private void SpawnLoot(
+    GameObject prefab,
+    Vector3 position)
 {
-    if (prefab == null) return;
+    if (prefab == null)
+        return;
 
     if (Physics.Raycast(
         position + Vector3.up * 100f,
@@ -477,14 +561,14 @@ body::before {
             loot, "Spawn Loot"
         );
     }
-}
-{
 }</code></pre>
             </div>
+
             <div class="sheet-content">
                 <h3>Enemy/Loot scatter tool</h3>
                 <p>
-                    This scatter tool allows me to scatter prefabs of choice on the terrain, in this case enemies and Loot
+                    This scatter tool allows me to scatter prefabs of
+                    choice on the terrain, in this case enemies and Loot.
                 </p>
                 <ul class="sheet-list">
                     <li>1 to 4 prefabs of choice to scatter</li>
@@ -492,32 +576,32 @@ body::before {
                     <li>Delete option to easily delete the scattered prefabs</li>
                 </ul>
             </div>
-        </div>
+        </article>
 
     </div>
-</div>
+</section>
 
-<p>
-                    
-                </p>
+</main>
 
-</div>
-
-<div class="project-side">
+<aside class="project-side">
     <div class="side-card">
-        <p><strong>Project Type:</strong>Unity engine tools</p>
-    <p><strong>Engine:</strong> Unity</p>
-    <p><strong>Status:</strong> In progress</p>
+        <p><strong>Project Type:</strong> Unity engine tools</p>
+        <p><strong>Engine:</strong> Unity</p>
+        <p><strong>Status:</strong> In progress</p>
     </div>
-</div>
+</aside>
 
 </div>
 </div>
 
 <script>
-window.onload = () => {
+window.addEventListener("load", () => {
     document.body.classList.add("page-entered");
-};
+
+    if (window.Prism) {
+        Prism.highlightAll();
+    }
+});
 </script>
 
 </body>
